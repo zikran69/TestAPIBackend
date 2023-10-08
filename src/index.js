@@ -12,11 +12,15 @@ app.use(
 );
 
 const userController = require("./admin/admin.controller");
+const roomController = require("./room/room.controller");
+const floorController = require("./floor/floor.controller");
 
 app.get("/api", (req, res) => {
   res.send("Hello");
 });
 app.use("/users", userController);
+app.use("/rooms", roomController);
+app.use("/floor", floorController);
 
 app.listen(PORT, () => {
   console.log("Express API running in Port: " + PORT);
