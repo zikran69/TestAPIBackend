@@ -6,7 +6,7 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
+  provider = "postgres"
   url      = env("DATABASE_URL")
 }
 
@@ -20,7 +20,11 @@ model Status{
   idStatus Int @id @default(autoincrement())
   nameStatus String
   user User[]
+  room Room[]
+  customer Customer[]
+  transaction Transaction[]
 }
+
 model User{
   idUser Int @id @default(autoincrement())
   nameUser String
@@ -35,4 +39,74 @@ model User{
   lastLoginin DateTime
   lastLigout DateTime
   fotoUser String
+}
+
+model Customer {
+  idCustomer Int @id @default(autoincrement())
+  nameCustomer String
+  nikCustomer String
+  emailCustomer String
+  tlpnCustomer String
+  addressCustomer String
+  fotoCustomer String
+  paswordCustomer String
+  statusId Status @relation(fields: [statusCustomer], references: [idStatus])
+  statusCustomer Int
+  transaction Transaction[] 
+}
+
+
+model Floor {
+  idFloor   Int    @id @default(autoincrement())
+  nameFloor String
+  room      Room[]
+}
+
+model Category {
+  idCategory       Int    @id @default(autoincrement())
+  nameCategory     String
+  descCategory     String
+  facilityCategory String
+  price            Float
+  room             Room[]
+}
+
+model Room {
+  idRoom             Int       @id @default(autoincrement())
+  categoryId         Int
+  floorId            Int
+  nameRoom           String
+  statusId           Int
+  descRoom           String
+  Status             Status?   @relation(fields: [statusIdStatus], references: [idStatus])
+  statusIdStatus     Int?
+  Floor              Floor?    @relation(fields: [floorIdFloor], references: [idFloor])
+  floorIdFloor       Int?
+  Category           Category? @relation(fields: [categoryIdCategory], references: [idCategory])
+  categoryIdCategory Int?
+  transaction Transaction[]
+}
+
+model Transaction {
+  idTransaction Int @id @default(autoincrement())
+  customer Customer @relation(fields: [customerId], references: [idCustomer])
+  customerId Int
+  roomId Int
+  room Room @relation(fields: [roomId], references: [idRoom])
+  statusTransaction Int
+  status Status @relation(fields: [statusTransaction], references: [idStatus])
+  checkIn DateTime
+  checkOut DateTime
+  day Int
+  people Int
+  booking DateTime
+  statusPayment Int 
+  payment Payment @relation(fields: [statusPayment], references: [idPayment])
+  totalPayment Int
+}
+
+model Payment {
+  idPayment Int @id @default(autoincrement())
+  paymentStatus String
+  transaction Transaction[] 
 }
