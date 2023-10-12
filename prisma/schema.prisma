@@ -36,8 +36,6 @@ model User{
   levelUser Int 
   suser   Status @relation(fields: [statusUser], references: [idStatus])
   statusUser Int 
-  lastLoginin DateTime
-  lastLigout DateTime
   fotoUser String
 }
 

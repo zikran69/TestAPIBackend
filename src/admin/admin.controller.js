@@ -23,7 +23,7 @@ router.post("/", async (req, res) => {
       return res.status(400).send({ message: "password not strong" });
     }
 
-    const user = await createProduct(newData);
+    const user = await createUser(newData);
 
     res.send({
       data: user,

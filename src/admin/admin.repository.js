@@ -14,8 +14,6 @@ const findAllUser = async () => {
       levelUser: true,
       statusUser: true,
       suser: true,
-      lastLoginin: true,
-      lastLigout: true,
       fotoUser: true,
     },
   });
