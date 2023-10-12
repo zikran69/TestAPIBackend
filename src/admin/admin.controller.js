@@ -1,5 +1,6 @@
 const express = require("express");
 const prisma = require("../db/index");
+const validator = require("validator");
 const {
   allUsers,
   userById,
@@ -17,6 +18,11 @@ router.get("/", async (req, res) => {
 router.post("/", async (req, res) => {
   try {
     const newData = req.body;
+    const strongPassword = validator.isStrongPassword(newData.passwordUser);
+    if (!strongPassword) {
+      return res.status(400).send({ message: "password not strong" });
+    }
+
     const user = await createProduct(newData);
 
     res.send({
@@ -44,6 +50,10 @@ router.put("/:id", async (req, res) => {
   ) {
     return res.status(400).send("some fields are missings");
   }
+  const strongPass = validator.isStrongPassword(newData.passwordUser);
+  if (!strongPass) {
+    return res.status(400).send({ message: "password not strong" });
+  }
   const user = await editUserById(parseInt(userId), newData);
 
   res.send({
@@ -55,6 +65,10 @@ router.patch("/:id", async (req, res) => {
   try {
     const userId = req.params.id;
     const newData = req.body;
+    const strongPassUpdate = validator.isStrongPassword(newData.passwordUser);
+    if (!strongPassUpdate) {
+      return res.status(400).send({ message: "password not strong" });
+    }
     const user = await editUserById(parseInt(userId), newData);
 
     res.send({

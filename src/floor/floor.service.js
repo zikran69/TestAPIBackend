@@ -1,4 +1,4 @@
-const prisma = require("../../backend-booking/src/db/index");
+const prisma = require("../db/index");
 const { findAllUser } = require("./floor.repository");
 
 const allUsers = async () => {

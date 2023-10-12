@@ -1,4 +1,5 @@
 const prisma = require("../db/index");
+const crypt = require("bcrypt");
 
 const findAllUser = async () => {
   const users = await prisma.user.findMany({
@@ -37,12 +38,14 @@ const checkUser = async (newData) => {
   });
   return users;
 };
+
 const insertUser = async (newData) => {
+  const hashedPwd = crypt.hashSync(newData.passwordUser, 8);
   const user = await prisma.user.create({
     data: {
       nameUser: newData.nameUser,
       emailUser: newData.emailUser,
-      passwordUser: newData.passwordUser,
+      passwordUser: hashedPwd,
       tlpUser: newData.tlpUser,
       addressUser: newData.addressUser,
       levelUser: newData.levelUser,
@@ -54,6 +57,7 @@ const insertUser = async (newData) => {
 };
 
 const updateUser = async (id, newData) => {
+  const hashedUpPass = crypt.hashSync(newData.passwordUser, 8);
   const product = await prisma.user.update({
     where: {
       idUser: id,
@@ -61,7 +65,7 @@ const updateUser = async (id, newData) => {
     data: {
       nameUser: newData.nameUser,
       emailUser: newData.emailUser,
-      passwordUser: newData.passwordUser,
+      passwordUser: hashedUpPass,
       tlpUser: newData.tlpUser,
       addressUser: newData.addressUser,
       levelUser: newData.levelUser,

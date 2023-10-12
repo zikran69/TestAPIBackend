@@ -1,4 +1,4 @@
-const prisma = require("../../backend-booking/src/db/index");
+const prisma = require("../db/index");
 
 const findAllUser = async () => {
   const users = await prisma.room.findMany();

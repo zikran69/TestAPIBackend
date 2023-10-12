@@ -1,5 +1,5 @@
 const express = require("express");
-const prisma = require("../../backend-booking/src/db/index");
+const prisma = require("../db/index");
 
 const { findAllUser } = require("./room.repository");
 
