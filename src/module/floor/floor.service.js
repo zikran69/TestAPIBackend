@@ -1,4 +1,3 @@
-const prisma = require("../db/index");
 const { findAllUser } = require("./floor.repository");
 
 const allUsers = async () => {

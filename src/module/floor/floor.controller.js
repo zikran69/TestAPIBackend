@@ -1,8 +1,5 @@
 const express = require("express");
-const prisma = require("../db/index");
-const {
-  allUsers,
-} = require("./floor.service");
+const { allUsers } = require("./floor.service");
 const router = express.Router();
 
 router.get("/", async (req, res) => {

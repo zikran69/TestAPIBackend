@@ -1,5 +1,4 @@
 const express = require("express");
-const prisma = require("../db/index");
 const validator = require("validator");
 const {
   allUsers,

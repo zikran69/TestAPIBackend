@@ -1,5 +1,4 @@
 const express = require("express");
-const prisma = require("../db/index");
 
 const { findAllUser } = require("./room.repository");
 
