@@ -10,10 +10,10 @@ const findAllUser = async () => {
       passwordUser: true,
       tlpUser: true,
       addressUser: true,
-      user: true,
+      userLevel: true,
       levelUser: true,
       statusUser: true,
-      suser: true,
+      userStatus: true,
       fotoUser: true,
     },
   });

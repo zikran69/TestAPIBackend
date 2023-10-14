@@ -32,9 +32,9 @@ model User{
   passwordUser String
   tlpUser String
   addressUser String
-  user   Level @relation(fields: [levelUser], references: [idLevel])
+  userLevel   Level @relation(fields: [levelUser], references: [idLevel])
   levelUser Int 
-  suser   Status @relation(fields: [statusUser], references: [idStatus])
+  userStatus   Status @relation(fields: [statusUser], references: [idStatus])
   statusUser Int 
   fotoUser String
 }
