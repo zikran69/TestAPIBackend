@@ -1,6 +1,8 @@
 # backend-booking
 
-jangan lupa npm install
+*jangan lupa "npm install"*
+
+
 kemudian buat file .env
 copy semua data yang ada di file .env.dev ke file .env
 kemudian ganti DATABASE_URL="postgresql://hilmi:12November2000@127.0.0.1:5432/testing?schema=public"
