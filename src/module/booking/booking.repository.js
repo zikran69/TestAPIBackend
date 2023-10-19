@@ -1,19 +1,18 @@
 const prisma = require("../../db/index");
 
 const checkUser = async (newData) => {
-  const users = await prisma.transaction.findFirst({
+  const users = await prisma.customer.findFirst({
     where: {
-      customerId: newData.customerId,
-      statusTransaction: newData.statusTransaction,
+      emailCustomer: newData.emailCustomer,
     },
   });
   return users;
 };
 
-const insertUser = async (newData) => {
+const insertUser = async (newData, cust) => {
   const user = await prisma.transaction.create({
     data: {
-      customerId: newData.customerId,
+      customerId: cust,
       roomId: newData.roomId,
       statusTransaction: newData.statusTransaction,
       checkIn: newData.checkIn,
@@ -30,14 +29,13 @@ const insertUser = async (newData) => {
 const insertCustomer = async (newData) => {
   const user = await prisma.customer.create({
     data: {
-      idCustomer: newData.idCustomer,
       nameCustomer: newData.nameCustomer,
       nikCustomer: newData.nikCustomer,
       emailCustomer: newData.emailCustomer,
-      tlpCustomer: newData.tlpCustomer,
+      tlpnCustomer: newData.tlpnCustomer,
       addressCustomer: newData.addressCustomer,
       fotoCustomer: newData.fotoCustomer,
-      passwordCustomer: newData.passwordCustomer,
+      paswordCustomer: newData.emailCustomer,
       statusCustomer: newData.statusCustomer,
     },
   });
