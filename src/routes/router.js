@@ -14,5 +14,6 @@ router.use("/rooms", roomController);
 router.use("/floor", floorController);
 router.use("/booking", bookingController);
 router.use("/reports", reportController);
+router.use("/booking", bookingController);
 
 module.exports = router;
