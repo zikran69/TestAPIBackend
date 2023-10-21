@@ -95,7 +95,7 @@ model Transaction {
   checkOut          DateTime
   day               Int
   people            Int
-  booking           DateTime
+  booking           DateTime @default(now())
   statusPayment     Int
   payment           Payment  @relation(fields: [statusPayment], references: [idPayment])
   totalPayment      Int

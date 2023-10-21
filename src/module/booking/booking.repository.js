@@ -13,15 +13,14 @@ const insertUser = async (newData, cust) => {
   const user = await prisma.transaction.create({
     data: {
       customerId: cust,
-      roomId: newData.roomId,
-      statusTransaction: newData.statusTransaction,
+      roomId: parseInt(newData.roomId),
+      statusTransaction: 1,
       checkIn: newData.checkIn,
       checkOut: newData.checkOut,
-      day: newData.day,
-      people: newData.people,
-      booking: newData.booking,
-      statusPayment: newData.statusPayment,
-      totalPayment: newData.totalPayment,
+      day: parseInt(newData.day),
+      people: parseInt(newData.people),
+      statusPayment: parseInt(newData.statusPayment),
+      totalPayment: parseInt(newData.totalPayment),
     },
   });
   return user;
@@ -36,7 +35,7 @@ const insertCustomer = async (newData) => {
       addressCustomer: newData.addressCustomer,
       fotoCustomer: newData.fotoCustomer,
       paswordCustomer: newData.emailCustomer,
-      statusCustomer: newData.statusCustomer,
+      statusCustomer: 1,
     },
   });
   return user;
