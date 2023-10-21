@@ -12,7 +12,19 @@ router.post("/", async (req, res) => {
       message: "create booking success",
     });
   } catch (err) {
-    res.status(400).send(err.message);
+    // Memeriksa apakah kesalahan terkait validasi data
+    if (err.name === "ValidationError") {
+      res.status(400).send({
+        error: "Invalid data",
+        details: err.message,
+      });
+    } else {
+      // Kesalahan umum lainnya
+      res.status(500).send({
+        error: "Internal Server Error",
+        details: err.message,
+      });
+    }
   }
 });
 
