@@ -11,6 +11,7 @@ app.use(
     origin: "*",
   })
 );
+app.use("/bookingAssets", express.static(__dirname + "/asset/"));
 
 app.get("/api", (req, res) => {
   res.send("Hello");
