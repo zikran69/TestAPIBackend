@@ -14,6 +14,7 @@ const {
   categoryId,
   categorySearch,
   categoryDelete,
+  categoryUpdate,
 } = require("../module/category");
 
 router.use("/login", ValidateLogin, loginController);
@@ -28,5 +29,6 @@ router.use("/categories", allCategory);
 router.use("/category/:id", categoryId);
 router.use("/category-search/:name", categorySearch);
 router.use("/category-delete/:id", categoryDelete);
+router.use("/category-update/:id", categoryUpdate);
 
 module.exports = router;
