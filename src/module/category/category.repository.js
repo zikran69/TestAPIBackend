@@ -13,7 +13,7 @@ const addCategory = async (req, res) => {
         price: parseFloat(price),
       },
     });
-    return res.status(200).send({ message: "add category..." });
+    return res.status(200).send({ message: "add category success..." });
   } catch (error) {
     return res.status(500).send({ message: error.message });
   }
@@ -72,10 +72,29 @@ const categoryDelete = async (req, res) => {
   }
 };
 
+const categoryUpdate = async (req, res) => {
+  try {
+    const { nameCategory, descCategory, facilityCategory, price } = req.body;
+    await prisma.category.update({
+      where: { idCategory: parseInt(req.params.id) },
+      data: {
+        nameCategory: nameCategory.toLowerCase(),
+        descCategory: descCategory,
+        facilityCategory: facilityCategory,
+        price: parseFloat(price),
+      },
+    });
+    return res.status(200).send({ message: "updated category..." });
+  } catch (error) {
+    return res.status(500).send({ message: error.message });
+  }
+};
+
 module.exports = {
   addCategory,
   allCategory,
   categoryId,
   categorySearch,
   categoryDelete,
+  categoryUpdate,
 };
