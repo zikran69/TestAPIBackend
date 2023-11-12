@@ -1,7 +1,8 @@
 {
   "version": 2,
+  "framework": "node",
   "name": "apibackendtest",
-  "buiild": [
+  "builds": [
     {
       "src": "index.js",
       "use": "@vercel/node"
