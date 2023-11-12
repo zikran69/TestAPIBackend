@@ -1,7 +1,5 @@
 {
   "version": 2,
-  "framework": "node",
-  "name": "apibackendtest",
   "builds": [
     {
       "src": "index.js",
@@ -10,8 +8,11 @@
   ],
   "routes": [
     {
+      "handle": "vercel"
+    },
+    {
       "src": "/(.*)",
-      "dest": "/index.js"
+      "dest": "index.js"
     }
   ]
 }
